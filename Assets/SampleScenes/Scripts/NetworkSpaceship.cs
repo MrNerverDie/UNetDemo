@@ -32,6 +32,7 @@ public class NetworkSpaceship : NetworkBehaviour
     protected float _acceleration = 0;
 
     protected float _shootingTimer = 0;
+    
 
     protected bool _canControl = true;
 
