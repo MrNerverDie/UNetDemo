@@ -51,10 +51,10 @@ public class NetworkGameManager : NetworkBehaviour
             allDestroyed &= (sShips[i].lifeCount == 0);
         }
 
-        if(allDestroyed)
-        {
-            StartCoroutine(ReturnToLoby());
-        }
+        //if(allDestroyed)
+        //{
+        //    StartCoroutine(ReturnToLoby());
+        //}
     }
 
     public override void OnStartClient()

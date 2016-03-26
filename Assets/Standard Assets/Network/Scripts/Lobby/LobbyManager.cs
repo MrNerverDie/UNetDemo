@@ -377,9 +377,9 @@ namespace UnityStandardAssets.Network
             ServerChangeScene(playScene);
         }
 
-        // ----------------- Client callbacks ------------------
+		// ----------------- Client callbacks ------------------
 
-        public override void OnClientConnect(NetworkConnection conn)
+		public override void OnClientConnect(NetworkConnection conn)
         {
             base.OnClientConnect(conn);
 
