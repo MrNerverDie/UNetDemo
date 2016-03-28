@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Networking;
 using UnityStandardAssets.Network;
 using System.Collections;
@@ -109,6 +109,8 @@ public class NetworkGameManager : NetworkBehaviour
             asteroid.SetupStartParameters(-position.normalized * 1000.0f, Random.insideUnitSphere * Random.Range(500.0f, 1500.0f));
 
             NetworkServer.Spawn(ast);
+
+			Debug.Log("IsServer : " + isServer + " isClient : " + isClient + " isLocalPlayer : " + isLocalPlayer);
         }
     }
 

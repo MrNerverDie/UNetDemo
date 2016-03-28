@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -23,7 +23,10 @@ namespace MoleMole
 
         public void Core()
         {
-
+			foreach (var player in _playerList)
+			{
+				player.Core();
+			}
         }
 
         public void Destroy()
@@ -31,6 +34,9 @@ namespace MoleMole
 
         }
 
-		
+		public void AddPlayer(GameObject playerObj)
+		{
+			_playerList.Add(new BasicPlayer(playerObj));
+		}
     }
 }

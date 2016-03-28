@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -29,7 +29,7 @@ namespace MoleMole
 
 		public void AddPlayer(GameObject playerObj)
 		{
-
+			_playerManager.AddPlayer(playerObj);
 		}
 	}
 }

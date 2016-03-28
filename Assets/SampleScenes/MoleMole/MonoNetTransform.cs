@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 
 /*
  *  
- *  
+ *  Mono Net Transform
  *
  *  by Xuanyi
  *
@@ -12,18 +13,32 @@ using System.Collections.Generic;
 
 namespace MoleMole
 {
-    public class MonoNetTransform : MonoBehaviour
+	public class SyncListVector2 : SyncListStruct<Vector2>
+	{
+
+	}
+
+    public class MonoNetTransform : NetworkBehaviour
     {
-        // Use this for initialization
-        void Start () 
-        {
-        
-        }
-        
-        // Update is called once per frame
+		[SyncVar]
+		public float speed = 30f;
+		[SyncVar]
+		public Vector2 targetPos;
+
+		[ClientCallback]
         void Update () 
         {
-        
+			Vector2 moveDelta = new Vector2(targetPos.x - transform.position.x, targetPos.y - transform.position.z);
+
+			if (!IsReachTarget())
+			{
+				transform.Translate(moveDelta * speed * Time.deltaTime);
+			}
         }
+
+		private bool IsReachTarget()
+		{
+			return Mathf.Abs(targetPos.x - transform.position.x) < 0.25f && Mathf.Abs(targetPos.y - transform.position.z) < 0.25f;
+		}
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,7 +8,7 @@ using UnityStandardAssets.Network;
 
 /*
  *  
- *  
+ *  Mono Lobby Manager
  *
  *  by Xuanyi
  *
@@ -19,9 +20,15 @@ namespace MoleMole
     {
 		public override bool OnLobbyServerSceneLoadedForPlayer(GameObject lobbyPlayer, GameObject gamePlayer)
 		{
-			Debug.Log(client);
-			MonoBasicLevel.levelManager.AddPlayer(gamePlayer);
-			return base.OnLobbyServerSceneLoadedForPlayer(lobbyPlayer, gamePlayer);
+			Debug.Log(gamePlayer.name + " " + MonoBasicLevel.levelManager);
+			return true;
 		}
+
+		//public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
+		//{
+		//	GameObject myPlayer = Instantiate(gamePlayerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+		//	MonoBasicLevel.levelManager.AddPlayer(myPlayer);
+		//	return myPlayer;
+		//}
 	}
 }

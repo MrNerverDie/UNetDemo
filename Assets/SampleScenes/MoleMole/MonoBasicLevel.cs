@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Networking;
 
 using System.Collections;
@@ -19,22 +19,19 @@ namespace MoleMole
 
         public static LevelManager levelManager = null;
 
-        [ServerCallback]
         void Awake()
         {
             levelManager = new LevelManager();
         }
 
-        [ServerCallback]
 		void Start ()
         {
 
 		}
 		
-        [ServerCallback]
 		void Update ()
         {
-			levelManager.Core();
+			//levelManager.Core();
 		}
     }
 }
