@@ -24,6 +24,9 @@ namespace MoleMole
 
 		public void Core()
 		{
+
+
+			Debug.Log("BasicPlayer.Core");
 			if (!_playerView.GetComponent<MonoNetController>().isMoving)
 			{
 				return;

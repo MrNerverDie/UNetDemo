@@ -28,11 +28,11 @@ namespace MoleMole
 		[ClientCallback]
         void Update () 
         {
-			Vector2 moveDelta = new Vector2(targetPos.x - transform.position.x, targetPos.y - transform.position.z);
+			Vector3 moveDelta = new Vector3(targetPos.x - transform.position.x, 0, targetPos.y - transform.position.z);
 
 			if (!IsReachTarget())
 			{
-				transform.Translate(moveDelta * speed * Time.deltaTime);
+				transform.Translate(moveDelta * Mathf.Min(1f, speed * Time.deltaTime));
 			}
         }
 

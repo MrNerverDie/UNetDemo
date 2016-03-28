@@ -16,12 +16,13 @@ namespace MoleMole
 {
     public class MonoBasicLevel : NetworkBehaviour
     {
+		public static GameObject abcde;
 
-        public static LevelManager levelManager = null;
+        public static LevelManager levelManager = new LevelManager();
 
         void Awake()
         {
-            levelManager = new LevelManager();
+
         }
 
 		void Start ()
@@ -31,7 +32,7 @@ namespace MoleMole
 		
 		void Update ()
         {
-			//levelManager.Core();
+			levelManager.Core();
 		}
     }
 }
