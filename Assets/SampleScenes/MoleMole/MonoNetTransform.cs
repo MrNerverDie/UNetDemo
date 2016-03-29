@@ -32,13 +32,18 @@ namespace MoleMole
 
 			if (!IsReachTarget())
 			{
-				transform.Translate(moveDelta * Mathf.Min(1f, speed * Time.deltaTime));
+				Vector3 moveDelataThisFrame = moveDelta.normalized * speed * Time.deltaTime;
+				if (moveDelataThisFrame.magnitude > moveDelta.magnitude)
+				{
+					moveDelataThisFrame = moveDelta;
+				}
+				transform.Translate(moveDelataThisFrame);
 			}
         }
 
 		private bool IsReachTarget()
 		{
-			return Mathf.Abs(targetPos.x - transform.position.x) < 0.25f && Mathf.Abs(targetPos.y - transform.position.z) < 0.25f;
+			return Mathf.Approximately(targetPos.x, transform.position.x) && Mathf.Approximately(targetPos.y, transform.position.z);
 		}
     }
 }
