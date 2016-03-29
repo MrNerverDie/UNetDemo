@@ -20,6 +20,7 @@ namespace MoleMole
 
     public class MonoNetTransform : NetworkBehaviour
     {
+
 		[SyncVar]
 		public float speed = 30f;
 		[SyncVar]
