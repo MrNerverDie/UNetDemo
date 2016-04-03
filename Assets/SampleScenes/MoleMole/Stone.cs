@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -12,16 +12,31 @@ using System.Collections.Generic;
 
 namespace MoleMole
 {
-    public class Stone : MonoBehaviour
+    public class Stone : BaseDynamicObject
     {
-		// Use this for initialization
-		void Start () {
-		
+		private float speed = 30f;
+
+		public Stone(GameObject dynamicObjView, int typeID, float createX, float createZ)
+		{
+			Init(dynamicObjView, typeID, createX, createZ);
+			InitNetwork();
 		}
-		
-		// Update is called once per frame
-		void Update () {
-		
+
+		public override void UpdateState()
+		{
+			_dynamicObjTransform.Translate(new Vector3(0, 0, -Time.deltaTime * speed));
+			_dynamicObjTransform.SyncPosition();
 		}
+
+		public override bool IsToBeDestroy()
+		{
+			return _dynamicObjTransform.position.z < -100f;
+		}
+
+		public void InitNetwork()
+		{
+			_dynamicObjTransform.GetComponent<MonoNetTransform>().speed = speed;
+		}
+
     }
 }

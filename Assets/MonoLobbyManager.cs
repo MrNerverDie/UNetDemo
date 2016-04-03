@@ -18,17 +18,10 @@ namespace MoleMole
 {
     public class MonoLobbyManager : LobbyManager
     {
-		GameObject abc;
-
 
 		public override bool OnLobbyServerSceneLoadedForPlayer(GameObject lobbyPlayer, GameObject gamePlayer)
 		{
-			Debug.Log("A0");
-			Debug.Log(gamePlayer.name + " " + MonoBasicLevel.levelManager);
-			MonoBasicLevel.levelManager.AddPlayer(gamePlayer);
-			abc = gamePlayer;
-			MonoBasicLevel.abcde = gamePlayer;
-			Debug.Log("A1");
+			LevelGeneralLogic.EnqueueToCreatePlayerObj(gamePlayer);
 			return true;
 		}
 

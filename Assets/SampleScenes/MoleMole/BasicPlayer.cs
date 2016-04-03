@@ -24,9 +24,6 @@ namespace MoleMole
 
 		public void Core()
 		{
-
-
-			Debug.Log("BasicPlayer.Core");
 			if (!_playerView.GetComponent<MonoNetController>().isMoving)
 			{
 				return;
@@ -44,7 +41,7 @@ namespace MoleMole
 			dz = controllerRatioZ * Time.deltaTime * speed;
 
 			_playerView.transform.position = new Vector3(_playerView.transform.position.x + dx, 0, _playerView.transform.position.z + dz);
-			_playerView.GetComponent<MonoNetTransform>().targetPos = new Vector2( _playerView.transform.position.x, _playerView.transform.position.z);
+			_playerView.transform.SyncPosition();
 		}
     }
 }

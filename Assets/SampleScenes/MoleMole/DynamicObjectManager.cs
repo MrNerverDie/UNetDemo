@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -14,15 +15,15 @@ namespace MoleMole
 {
     public class DynamicObjectData
     {
-        public const int STONE_TYPE = 0;
+        public const int STONE_TYPE = 1;
 
         private static readonly string[] RESOURCE_PATH = new string[]
         {
             "",
-            "SampleScenes/Prefabs/BigAsteroid",
+            "Prefabs/BigAsteroid",
         };
 
-        public string GetResourcePath(int type)
+        public static string GetResourcePath(int type)
         {
             return RESOURCE_PATH[type];
         }
@@ -30,20 +31,44 @@ namespace MoleMole
 
     public class DynamicObjectManager
     {
+		private List<BaseDynamicObject> _dynamicObjectList = new List<BaseDynamicObject>();
+
 
         public DynamicObjectManager()
         {
 
         }
        
-        private void Core()
+        public void Core()
         {
+			for (int i = 0; i < _dynamicObjectList.Count; i++)
+			{
+				if (_dynamicObjectList[i].IsToBeDestroy())
+				{
+					_dynamicObjectList[i].Destroy();
+					_dynamicObjectList.RemoveAt(i);
+					i--;
+				}
+			}
 
+			for (int i = 0; i < _dynamicObjectList.Count; i++)
+			{
+				_dynamicObjectList[i].Core();
+			}
         } 
 
-        public void CreateStone()
+        public Stone CreateStone(float createX, float createZ)
         {
+			//	//
+			GameObject prefab = Resources.Load<GameObject>(DynamicObjectData.GetResourcePath(DynamicObjectData.STONE_TYPE));
+			ClientScene.RegisterPrefab(prefab);
 
+			GameObject dynamicObjectView = GameObject.Instantiate(prefab) as GameObject;
+			Stone stone = new Stone(dynamicObjectView, DynamicObjectData.STONE_TYPE, createX, createZ);
+			_dynamicObjectList.Add(stone);
+
+			NetworkServer.Spawn(dynamicObjectView);
+			return stone;
         }
     }
 }

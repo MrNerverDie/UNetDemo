@@ -23,6 +23,11 @@ namespace MoleMole
 
         public void Core()
         {
+			if (LevelGeneralLogic.IsAnyToCreatePlayerObj())
+			{
+				AddPlayer(LevelGeneralLogic.DequeueToCreatePlayerObj());
+			}
+
 			foreach (var player in _playerList)
 			{
 				player.Core();
